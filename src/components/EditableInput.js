@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import css from "./styles.module.css";
 
 export default class EditableInput extends Component {
   handleInputChange = (event) => {
@@ -8,7 +9,7 @@ export default class EditableInput extends Component {
   render() {
     const { inputSalary, label, id } = this.props;
     return (
-      <div>
+      <div className={css.input}>
         <label className="active" htmlFor={id}>
           {label}
         </label>
@@ -16,6 +17,7 @@ export default class EditableInput extends Component {
           type="text"
           id={id}
           onChange={this.handleInputChange}
+          style={{ fontWeight: "bold" }}
           value={inputSalary}
         />{" "}
       </div>

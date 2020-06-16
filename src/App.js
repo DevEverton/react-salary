@@ -3,6 +3,7 @@ import EditableInput from "./components/EditableInput";
 import { calculateSalaryFrom } from "./helpers/salary.js";
 import ReadOnlyInput from "./components/ReadOnlyInput";
 import { percentage, localCurrency } from "./helpers/formatHelpers.js";
+import css from "./components/styles.module.css";
 
 export default class App extends Component {
   constructor() {
@@ -55,50 +56,66 @@ export default class App extends Component {
       netSalary: percentage(grossSalary, netSalary),
     };
 
-    console.log(typeof discountINSS);
-
     return (
       <div>
-        <h1>React Salário</h1>
-        <EditableInput
-          id={"grossSalary"}
-          label={"Salário Bruto"}
-          inputSalary={grossSalary}
-          onInputChange={this.handleInputChange}
-        />
+        <h1 className={css.title}>React Salário</h1>
+        <div className={css.flexRow}>
+          <div className={"row"}>
+            <div className={"col l12 s12"}>
+              <EditableInput
+                id={"grossSalary"}
+                label={"Salário Bruto"}
+                inputSalary={grossSalary}
+                onInputChange={this.handleInputChange}
+              />
+            </div>
+            <div className="col l3 s6">
+              <ReadOnlyInput
+                id={"baseINSS"}
+                label={"Base INSS"}
+                value={`${localCurrency(baseINSS)}`}
+              />
+            </div>
 
-        <ReadOnlyInput
-          id={"baseINSS"}
-          label={"Base INSS"}
-          value={`${localCurrency(baseINSS)}`}
-        />
-
-        <ReadOnlyInput
-          id={"discountINSS"}
-          label={"Desconto INSS"}
-          value={`${localCurrency(
-            discountINSS
-          )} (${percentageOf.discINSS.toFixed(2)}%) `}
-        />
-        <ReadOnlyInput
-          id={"baseIRPF"}
-          label={"Base IRPF"}
-          value={localCurrency(baseIRPF)}
-        />
-        <ReadOnlyInput
-          id={"discountIRPF"}
-          label={"Desconto IRPF"}
-          value={`${localCurrency(
-            discountIRPF
-          )} (${percentageOf.discIRPF.toFixed(2)}%) `}
-        />
-        <ReadOnlyInput
-          id={"netSalary"}
-          label={"Salário Líquido"}
-          value={`${localCurrency(netSalary)} (${percentageOf.netSalary.toFixed(
-            2
-          )}%) `}
-        />
+            <div className="col l3 s6">
+              <ReadOnlyInput
+                id={"discountINSS"}
+                color={"#e67e22"}
+                label={"Desconto INSS"}
+                value={`${localCurrency(
+                  discountINSS
+                )} (${percentageOf.discINSS.toFixed(2)}%) `}
+              />
+            </div>
+            <div className="col l3 s6">
+              <ReadOnlyInput
+                id={"baseIRPF"}
+                label={"Base IRPF"}
+                value={localCurrency(baseIRPF)}
+              />
+            </div>
+            <div className="col l3 s6">
+              <ReadOnlyInput
+                id={"discountIRPF"}
+                color={"#c0392b"}
+                label={"Desconto IRPF"}
+                value={`${localCurrency(
+                  discountIRPF
+                )} (${percentageOf.discIRPF.toFixed(2)}%) `}
+              />
+            </div>
+            <div className="col l3 s6">
+              <ReadOnlyInput
+                id={"netSalary"}
+                color={"#16a085"}
+                label={"Salário Líquido"}
+                value={`${localCurrency(
+                  netSalary
+                )} (${percentageOf.netSalary.toFixed(2)}%) `}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
