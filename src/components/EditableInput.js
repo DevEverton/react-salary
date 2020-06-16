@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { formatNumber } from "../helpers/formatHelpers.js";
 
 export default class EditableInput extends Component {
   handleInputChange = (event) => {

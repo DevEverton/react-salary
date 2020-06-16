@@ -8,7 +8,7 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      grossSalary: "1000",
+      grossSalary: "",
       baseINSS: 0,
       discountINSS: 0,
       baseIRPF: 0,
@@ -49,7 +49,13 @@ export default class App extends Component {
       netSalary,
     } = this.state;
 
-    console.log();
+    const percentageOf = {
+      discINSS: percentage(grossSalary, discountINSS),
+      discIRPF: percentage(grossSalary, discountIRPF),
+      netSalary: percentage(grossSalary, netSalary),
+    };
+
+    console.log(typeof discountINSS);
 
     return (
       <div>
@@ -60,18 +66,19 @@ export default class App extends Component {
           inputSalary={grossSalary}
           onInputChange={this.handleInputChange}
         />
+
         <ReadOnlyInput
           id={"baseINSS"}
           label={"Base INSS"}
-          value={localCurrency(baseINSS)}
+          value={`${localCurrency(baseINSS)}`}
         />
+
         <ReadOnlyInput
           id={"discountINSS"}
           label={"Desconto INSS"}
-          value={`${localCurrency(discountINSS)} (${percentage(
-            grossSalary,
+          value={`${localCurrency(
             discountINSS
-          ).toFixed(2)}%) `}
+          )} (${percentageOf.discINSS.toFixed(2)}%) `}
         />
         <ReadOnlyInput
           id={"baseIRPF"}
@@ -81,18 +88,16 @@ export default class App extends Component {
         <ReadOnlyInput
           id={"discountIRPF"}
           label={"Desconto IRPF"}
-          value={`${localCurrency(discountIRPF)} (${percentage(
-            grossSalary,
+          value={`${localCurrency(
             discountIRPF
-          ).toFixed(2)}%) `}
+          )} (${percentageOf.discIRPF.toFixed(2)}%) `}
         />
         <ReadOnlyInput
           id={"netSalary"}
           label={"Salário Líquido"}
-          value={`${localCurrency(netSalary)} (${percentage(
-            grossSalary,
-            netSalary
-          ).toFixed(2)}%) `}
+          value={`${localCurrency(netSalary)} (${percentageOf.netSalary.toFixed(
+            2
+          )}%) `}
         />
       </div>
     );

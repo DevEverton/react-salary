@@ -86,7 +86,7 @@ function calculateDiscountIRPF(baseIRPF) {
 }
 
 function calculateSalaryFrom(fullSalary) {
-  const baseINSS = fullSalary;
+  const baseINSS = new Number(fullSalary);
   const discountINSS = calculateDiscountINSS(baseINSS);
 
   const baseIRPF = baseINSS - discountINSS;

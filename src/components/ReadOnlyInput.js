@@ -1,21 +1,12 @@
 import React, { Component } from "react";
-import { formatNumber } from "../helpers/formatHelpers.js";
 
 export default class ReadOnlyInput extends Component {
   render() {
     const { value, label, id } = this.props;
     return (
       <div>
-        <label className="active" htmlFor={id}>
-          {label}
-        </label>
-        <input
-          type="text"
-          id={id}
-          onChange={this.handleInputChange}
-          value={value}
-          readOnly
-        />{" "}
+        <label htmlFor={id}>{label}</label>
+        <input type="text" id={id} value={value} readOnly />{" "}
       </div>
     );
   }
