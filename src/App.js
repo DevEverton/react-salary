@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import EditableInput from "./components/EditableInput";
 import { calculateSalaryFrom } from "./helpers/salary.js";
 import ReadOnlyInput from "./components/ReadOnlyInput";
-import { percentage } from "./helpers/formatHelpers.js";
+import { percentage, localCurrency } from "./helpers/formatHelpers.js";
 
 export default class App extends Component {
   constructor() {
@@ -60,20 +60,28 @@ export default class App extends Component {
           inputSalary={grossSalary}
           onInputChange={this.handleInputChange}
         />
-        <ReadOnlyInput id={"baseINSS"} label={"Base INSS"} value={baseINSS} />
+        <ReadOnlyInput
+          id={"baseINSS"}
+          label={"Base INSS"}
+          value={localCurrency(baseINSS)}
+        />
         <ReadOnlyInput
           id={"discountINSS"}
           label={"Desconto INSS"}
-          value={`R$ ${discountINSS} (${percentage(
+          value={`${localCurrency(discountINSS)} (${percentage(
             grossSalary,
             discountINSS
           ).toFixed(2)}%) `}
         />
-        <ReadOnlyInput id={"baseIRPF"} label={"Base IRPF"} value={baseIRPF} />
+        <ReadOnlyInput
+          id={"baseIRPF"}
+          label={"Base IRPF"}
+          value={localCurrency(baseIRPF)}
+        />
         <ReadOnlyInput
           id={"discountIRPF"}
           label={"Desconto IRPF"}
-          value={`R$ ${discountIRPF} (${percentage(
+          value={`${localCurrency(discountIRPF)} (${percentage(
             grossSalary,
             discountIRPF
           ).toFixed(2)}%) `}
@@ -81,9 +89,10 @@ export default class App extends Component {
         <ReadOnlyInput
           id={"netSalary"}
           label={"Salário Líquido"}
-          value={`R$ ${netSalary} (${percentage(grossSalary, netSalary).toFixed(
-            2
-          )}%) `}
+          value={`${localCurrency(netSalary)} (${percentage(
+            grossSalary,
+            netSalary
+          ).toFixed(2)}%) `}
         />
       </div>
     );
