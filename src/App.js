@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import EditableInput from "./components/EditableInput";
 import { calculateSalaryFrom } from "./helpers/salary.js";
 import ReadOnlyInput from "./components/ReadOnlyInput";
+import { percentage } from "./helpers/formatHelpers.js";
 
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      grossSalary: "",
+      grossSalary: "1000",
       baseINSS: 0,
       discountINSS: 0,
       baseIRPF: 0,
@@ -15,10 +16,15 @@ export default class App extends Component {
       netSalary: 0,
     };
   }
+  componentDidMount() {
+    this.getDataFromSalary(1000);
+  }
 
   handleInputChange = (inputSalary) => {
     this.setState({ grossSalary: inputSalary });
+    this.getDataFromSalary(inputSalary);
   };
+
   getDataFromSalary = (grossSalary) => {
     let data = calculateSalaryFrom(grossSalary);
     const { baseINSS, discountINSS, baseIRPF, discountIRPF, netSalary } = data;
@@ -32,6 +38,7 @@ export default class App extends Component {
       netSalary,
     });
   };
+
   render() {
     const {
       grossSalary,
@@ -41,6 +48,8 @@ export default class App extends Component {
       discountIRPF,
       netSalary,
     } = this.state;
+
+    console.log();
 
     return (
       <div>
@@ -55,18 +64,26 @@ export default class App extends Component {
         <ReadOnlyInput
           id={"discountINSS"}
           label={"Desconto INSS"}
-          value={discountINSS}
+          value={`R$ ${discountINSS} (${percentage(
+            grossSalary,
+            discountINSS
+          ).toFixed(2)}%) `}
         />
         <ReadOnlyInput id={"baseIRPF"} label={"Base IRPF"} value={baseIRPF} />
         <ReadOnlyInput
           id={"discountIRPF"}
           label={"Desconto IRPF"}
-          value={discountIRPF}
+          value={`R$ ${discountIRPF} (${percentage(
+            grossSalary,
+            discountIRPF
+          ).toFixed(2)}%) `}
         />
         <ReadOnlyInput
-          id={"metSalary"}
+          id={"netSalary"}
           label={"Salário Líquido"}
-          value={netSalary}
+          value={`R$ ${netSalary} (${percentage(grossSalary, netSalary).toFixed(
+            2
+          )}%) `}
         />
       </div>
     );

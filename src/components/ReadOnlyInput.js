@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { formatNumber } from "../helpers/formatHelpers.js";
 
 export default class ReadOnlyInput extends Component {
   render() {
