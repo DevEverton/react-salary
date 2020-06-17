@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/react-salary/static/css/main.dd3076ef.chunk.css",
+    "main.js": "/react-salary/static/js/main.c02ba039.chunk.js",
+    "main.js.map": "/react-salary/static/js/main.c02ba039.chunk.js.map",
+    "runtime-main.js": "/react-salary/static/js/runtime-main.19960706.js",
+    "runtime-main.js.map": "/react-salary/static/js/runtime-main.19960706.js.map",
+    "static/js/2.273c867b.chunk.js": "/react-salary/static/js/2.273c867b.chunk.js",
+    "static/js/2.273c867b.chunk.js.map": "/react-salary/static/js/2.273c867b.chunk.js.map",
+    "index.html": "/react-salary/index.html",
+    "precache-manifest.7edcb9590d24df247e76138e9fe94260.js": "/react-salary/precache-manifest.7edcb9590d24df247e76138e9fe94260.js",
+    "service-worker.js": "/react-salary/service-worker.js",
+    "static/css/main.dd3076ef.chunk.css.map": "/react-salary/static/css/main.dd3076ef.chunk.css.map",
+    "static/js/2.273c867b.chunk.js.LICENSE.txt": "/react-salary/static/js/2.273c867b.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.19960706.js",
+    "static/js/2.273c867b.chunk.js",
+    "static/css/main.dd3076ef.chunk.css",
+    "static/js/main.c02ba039.chunk.js"
+  ]
+}
