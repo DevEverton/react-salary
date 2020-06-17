@@ -4,6 +4,7 @@ import { calculateSalaryFrom } from "./helpers/salary.js";
 import ReadOnlyInput from "./components/ReadOnlyInput";
 import { percentage, localCurrency } from "./helpers/formatHelpers.js";
 import css from "./components/styles.module.css";
+import ColorBar from "./components/ColorBar";
 
 export default class App extends Component {
   constructor() {
@@ -113,6 +114,19 @@ export default class App extends Component {
                   netSalary
                 )} (${percentageOf.netSalary.toFixed(2)}%) `}
               />
+            </div>
+            <div
+              className="col l12 s12 "
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <ColorBar value={percentageOf.discINSS} color="#e67e22" />
+              <ColorBar value={percentageOf.discIRPF} color="#c0392b" />
+              <ColorBar value={percentageOf.netSalary} color="#16a085" />
             </div>
           </div>
         </div>
